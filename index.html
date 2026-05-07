@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickman Party - 30 Mini Games</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- MENU EKRANI -->
+    <div id="menuScreen" class="screen active">
+        <div class="menu-container">
+            <h1 class="game-title">🎮 STICKMAN PARTY</h1>
+            <p class="subtitle">30 Mini Games</p>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="startGame('football')">
+                    <div class="game-icon">⚽</div>
+                    <h3>Futbol</h3>
+                    <p>Insan vs Robot</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('archery')">
+                    <div class="game-icon">🎯</div>
+                    <h3>Strelka</h3>
+                    <p>Insan vs Robot</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('racing')">
+                    <div class="game-icon">🏃</div>
+                    <h3>Coraja</h3>
+                    <p>Tezlik testi</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('speed')">
+                    <div class="game-icon">⚡</div>
+                    <h3>Tezlik</h3>
+                    <p>Tezburchililik</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('boxing')">
+                    <div class="game-icon">🥊</div>
+                    <h3>Boks</h3>
+                    <p>Insan vs Robot</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('basketball')">
+                    <div class="game-icon">🏀</div>
+                    <h3>Basketbol</h3>
+                    <p>Bola otish</p>
+                </div>
+            </div>
+
+            <button class="btn-ranking" onclick="showRanking()">🏆 TOP 5 O'YINCHILAR</button>
+        </div>
+    </div>
+
+    <!-- FUTBOL O'YINI -->
+    <div id="footballScreen" class="screen">
+        <div class="game-header">
+            <button class="btn-back" onclick="backToMenu()">← Orqaga</button>
+            <h2>⚽ FUTBOL</h2>
+            <button class="btn-pause" onclick="pauseGame()">⏸</button>
+        </div>
+
+        <div class="football-game">
+            <div class="score-board">
+                <div class="player-score">
+                    <p class="player-name">SIZNING</p>
+                    <p class="score" id="playerScore">0</p>
+                </div>
+                <div class="vs">VS</div>
+                <div class="robot-score">
+                    <p class="robot-name">ROBOT</p>
+                    <p class="score" id="robotScore">0</p>
+                </div>
+            </div>
+
+            <canvas id="footballCanvas" width="400" height="500"></canvas>
+
+            <div class="football-controls">
+                <button class="control-btn" id="leftBtn" onmousedown="moveLeft(true)" onmouseup="moveLeft(false)" ontouchstart="moveLeft(true)" ontouchend="moveLeft(false)">
+                    ◀ CHAP
+                </button>
+                <button class="control-btn" id="shootBtn" ontouchstart="shoot()" onmousedown="shoot()">
+                    🎯 OTISH
+                </button>
+                <button class="control-btn" id="rightBtn" onmousedown="moveRight(true)" onmouseup="moveRight(false)" ontouchstart="moveRight(true)" ontouchend="moveRight(false)">
+                    O'NG ▶
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STRELKA O'YINI -->
+    <div id="archeryScreen" class="screen">
+        <div class="game-header">
+            <button class="btn-back" onclick="backToMenu()">← Orqaga</button>
+            <h2>🎯 STRELKA</h2>
+            <button class="btn-pause" onclick="pauseGame()">⏸</button>
+        </div>
+
+        <div class="archery-game">
+            <div class="score-board">
+                <div class="player-score">
+                    <p class="player-name">SIZNING</p>
+                    <p class="score" id="archeryPlayerScore">0</p>
+                </div>
+                <div class="vs">VS</div>
+                <div class="robot-score">
+                    <p class="robot-name">ROBOT</p>
+                    <p class="score" id="archeryRobotScore">0</p>
+                </div>
+            </div>
+
+            <canvas id="archeryCanvas" width="400" height="500"></canvas>
+
+            <div class="archery-controls">
+                <input type="range" id="powerSlider" min="0" max="100" value="50" class="slider">
+                <p class="slider-label">Kuch: <span id="powerValue">50</span>%</p>
+                <button class="control-btn btn-large" onclick="shootArrow()">🎯 OTISH</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RANKING EKRANI -->
+    <div id="rankingScreen" class="screen">
+        <div class="ranking-container">
+            <button class="btn-back" onclick="backToMenu()">← Orqaga</button>
+            <h1>🏆 TOP 5 O'YINCHILAR</h1>
+            
+            <div id="rankingList" class="ranking-list">
+            </div>
+
+            <button class="btn-clear" onclick="clearRanking()">🗑 Ma'lumotni Tozalash</button>
+        </div>
+    </div>
+
+    <!-- GAME OVER DIALOG -->
+    <div id="gameOverDialog" class="dialog">
+        <div class="dialog-content">
+            <h2 id="gameOverTitle">O'YIN TUGADI!</h2>
+            <p id="gameOverMessage"></p>
+            <button class="btn-confirm" onclick="closeGameOverDialog()">Davom Etish</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="ai.js"></script>
+    <script src="football.js"></script>
+    <script src="archery.js"></script>
+    <script src="ranking.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 To-Do List - Vazifalar Ro'yxati</title>
+    <link rel="stylesheet" href="todo-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <!-- HEADER -->
+            <div class="header">
+                <h1>📝 MENING VAZIFALARIM</h1>
+                <p class="date" id="currentDate"></p>
+            </div>
+
+            <!-- INPUT SECTION -->
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="todoInput" 
+                        class="todo-input" 
+                        placeholder="Yangi vazifa yozing..."
+                        autocomplete="off"
+                    >
+                    <button class="btn-add" onclick="addTodo()">
+                        ➕ QO'SHISH
+                    </button>
+                </div>
+                <div class="category-filter">
+                    <button class="filter-btn active" onclick="filterCategory('all')">🔵 Barcha</button>
+                    <button class="filter-btn" onclick="filterCategory('work')">💼 Ish</button>
+                    <button class="filter-btn" onclick="filterCategory('personal')">👤 Shaxsiy</button>
+                    <button class="filter-btn" onclick="filterCategory('shopping')">🛒 Xarid</button>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-label">Jami:</span>
+                    <span class="stat-value" id="totalCount">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Bajarilgan:</span>
+                    <span class="stat-value" id="completedCount">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Qolgan:</span>
+                    <span class="stat-value" id="pendingCount">0</span>
+                </div>
+            </div>
+
+            <!-- SORT OPTIONS -->
+            <div class="sort-section">
+                <label for="sortSelect">Tartiblash:</label>
+                <select id="sortSelect" class="sort-select" onchange="sortTodos()">
+                    <option value="newest">🕐 Eng yangi</option>
+                    <option value="oldest">📅 Eng eski</option>
+                    <option value="completed">✅ Bajarilgan birinchi</option>
+                    <option value="pending">⏳ Bajarilmagan birinchi</option>
+                </select>
+            </div>
+
+            <!-- TODO LIST -->
+            <div class="todo-list" id="todoList">
+                <!-- Vazifalar shu yerda ko'rsatiladi -->
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">📭</div>
+                <p>Hali vazifa yo'q!</p>
+                <p class="empty-subtext">Yangi vazifa qo'shib boshlang ➕</p>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="action-buttons">
+                <button class="btn-action btn-clear" onclick="clearCompleted()">
+                    🗑️ Bajarilganlarni O'chirish
+                </button>
+                <button class="btn-action btn-delete-all" onclick="deleteAll()">
+                    ⚠️ HAMMANI O'CHIRISH
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+</html>
